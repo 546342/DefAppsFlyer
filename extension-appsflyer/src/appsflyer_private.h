@@ -21,6 +21,7 @@ void SetDebugLog(bool is_debug);
 void LogEvent(const char* eventName, dmArray<TrackData>* trackData);
 void SetCustomerUserId(const char* userId);
 int GetAppsFlyerUID(lua_State* L);
+int GetIDFA(lua_State* L);
 
 } // namespace
 

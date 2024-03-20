@@ -86,6 +86,15 @@ int GetAppsFlyerUID(lua_State* L){
     return 1;
 }
 
- }// namespace
+int GetIDFA(lua_State* L){
+    if([[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled]) {
+        NSUUID *identifier = [[ASIdentifierManager sharedManager] advertisingIdentifier];
+        lua_pushstring(L, [identifier UUIDString]);
+    }
+    lua_pushstring(L, "");
+    return 1;
+}
+
+}// namespace
 
 #endif // platform

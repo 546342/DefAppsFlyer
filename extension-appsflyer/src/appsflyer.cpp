@@ -33,6 +33,13 @@ static int Lua_GetAppsFlyerUID(lua_State* L)
     return GetAppsFlyerUID(L);
 }
 
+static int Lua_GetIDFA(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 1);
+
+    return GetIDFA(L);
+}
+
 static int Lua_SetCallback(lua_State* L)
 {
     DM_LUA_STACK_CHECK(L, 0);
@@ -110,6 +117,7 @@ static const luaL_reg Module_methods[] =
     {"log_event", Lua_LogEvent},
     {"set_customer_user_id", Lua_SetCustomerUserId},
     {"get_appsflyer_uid", Lua_GetAppsFlyerUID},
+    {"get_idfa", Lua_GetIDFA},
     {0, 0}
 };
 

@@ -8,6 +8,12 @@ import com.appsflyer.AppsFlyerLib;
 
 import java.util.Map;
 
+
+import com.google.android.gms.ads.identifier.AdvertisingIdClient;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import java.io.IOException;
+
 import org.json.JSONObject;
 import org.json.JSONException;
 
@@ -93,5 +99,23 @@ public class AppsflyerJNI {
 
     public String getAppsFlyerUID() {
         return AppsFlyerLib.getInstance().getAppsFlyerUID(activity);
+    }
+
+    public String getIDFA() {
+        AdvertisingIdClient.Info adInfo;
+        adInfo = null;
+        try {
+            adInfo = AdvertisingIdClient.getAdvertisingIdInfo(activity.getApplicationContext());
+            if (adInfo.isLimitAdTrackingEnabled()) // check if user has opted out of tracking
+                return "";
+            return adInfo.getId();
+        } catch (IOException e) {
+            Log.e(TAG, "Unable to encode message data: " + e.getLocalizedMessage());
+        } catch (GooglePlayServicesNotAvailableException e) {
+            Log.e(TAG, "Unable to encode message data: " + e.getLocalizedMessage());
+        } catch (GooglePlayServicesRepairableException e) {
+            Log.e(TAG, "Unable to encode message data: " + e.getLocalizedMessage());
+        }
+        return "";
     }
 }
