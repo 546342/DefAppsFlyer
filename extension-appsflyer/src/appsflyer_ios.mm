@@ -4,6 +4,7 @@
 #include <dmsdk/sdk.h>
 // AppDelegate.h
 #import <AppsFlyerLib/AppsFlyerLib.h>
+#import <AdSupport/ASIdentifierManager.h> 
 #include "appsflyer_private.h"
 #import "appsflyer_callback_private.h"
 #import "DEFAFSDKDelegate.h"
